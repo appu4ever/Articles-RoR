@@ -15,6 +15,7 @@
     <% flash.each do |type, msg| %>
     <%= msg %>
     <%end%>
+    <%= render 'shared/navbar' %>
     <%= yield %>
 </body>
 

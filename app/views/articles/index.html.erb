@@ -1,20 +1,25 @@
-<h1>Listing of all articles</h1>
-<table>
-    <tr>
-        <th>NO:</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Actions</th>
-    </tr>
-    <% @articles.each do |article| %>
-    <tr>
-        <td><%= article.id %></td>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to "Show", article_path(article) %></td>
-        <td><%= link_to "Edit", edit_article_path(article) %></td>
-        <td><%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"} %></td>
-    </tr>
-    <% end %>
-</table>
-<%= link_to "Create new article", new_article_path %>
+<h1 class="text-center mt-3">Listing of all articles</h1>
+
+<% @articles.each do |article| %>
+<div class="row justify-content-md-center">
+    <div class="col-8">
+        <div class="card text-center shadow bg-white rounded w-75 mx-auto mt-3">
+            <div class="card-header font-italic">
+                By Aparna
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-success"><%= article.title %></h5>
+                <p class="card-text"><%= truncate(article.description) %></p>
+                <div class="flex justify-content-space-around">
+                    <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+                    <%= link_to "Edit", article_path(article), class: "btn btn-outline-primary" %>
+                    <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <small>Created about <%= time_ago_in_words(article.created_at) %> ago, edited about <%= time_ago_in_words(article.updated_at) %> ago</small>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
